@@ -1,10 +1,13 @@
 package com.aw.themoviedboddbit.di
 
+import androidx.annotation.NonNull
+import com.aw.themoviedboddbit.api.RequestInterceptor
 import com.aw.themoviedboddbit.models.network.DiscoverMovieResponse
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,22 +18,33 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    private val retrofit : Retrofit by lazy {
-        Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
+    @Provides
+    @Singleton
+    fun provideHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(RequestInterceptor())
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(@NonNull okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .client(okHttpClient)
+            .baseUrl("https://api.themoviedb.org/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideAPI(): TheMovieDBAPIService {
-        return retrofit.create(TheMovieDBAPIService::class.java)
+    fun provideAPI(@NonNull okHttpClient: OkHttpClient): TheMovieDBAPIService {
+        return provideRetrofit(okHttpClient).create(TheMovieDBAPIService::class.java)
     }
 
     interface TheMovieDBAPIService {
         @GET("3/discover/movie")
-        fun fetchDiscoverMovies(@Query("api_key") apiKey: String) : Call<DiscoverMovieResponse>
+        fun fetchDiscoverMovies() : Call<DiscoverMovieResponse>
     }
 
 }
