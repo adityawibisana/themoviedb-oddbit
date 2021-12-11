@@ -24,6 +24,11 @@ class DiscoverMovieAdapter(private val movies: List<Movie>) :
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
         holder.binding.title.text =  movie.title
+        holder.binding.voteAverage.text = movie.vote_average.toString()
+        holder.binding.popularity.text = movie.popularity.toString()
+        holder.binding.release.text = movie.release_date
+        holder.binding.vote.text = movie.vote_count.toString()
+
         movie.poster_path?.also {
             Glide
             .with(holder.itemView.context)
