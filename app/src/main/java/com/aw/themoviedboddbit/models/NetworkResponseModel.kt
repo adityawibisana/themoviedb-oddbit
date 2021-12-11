@@ -1,0 +1,3 @@
+package com.aw.themoviedboddbit.models
+
+interface NetworkResponseModel
