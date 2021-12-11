@@ -3,6 +3,7 @@ package com.aw.themoviedboddbit.di
 import androidx.annotation.NonNull
 import com.aw.themoviedboddbit.api.RequestInterceptor
 import com.aw.themoviedboddbit.models.network.DiscoverMovieResponse
+import com.aw.themoviedboddbit.models.network.GenresResponse
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,6 +46,9 @@ object NetworkModule {
     interface TheMovieDBAPIService {
         @GET("3/discover/movie")
         fun fetchDiscoverMovies() : Call<DiscoverMovieResponse>
+
+        @GET("3/genre/movie/list")
+        fun fetchGenres(@Query("language") language: String = "en-US"): Call<GenresResponse>
     }
 
 }
