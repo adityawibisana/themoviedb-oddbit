@@ -33,43 +33,16 @@
         tools:text="Title of the movie that is very long and must have 3 dots" />
 
     <TextView
-        android:id="@+id/voteAverage"
-        android:layout_width="wrap_content"
+        android:id="@+id/overview"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/primaryColor"
-        android:textSize="40sp"
         app:layout_constraintLeft_toLeftOf="@id/title"
-        app:layout_constraintBottom_toBottomOf="@id/poster"
-        android:layout_marginBottom="-8dp"
-        tools:text="7.9" />
-
-    <TextView
-        android:id="@+id/popularity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/vote"
+        app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintRight_toRightOf="parent"
-        android:textSize="@dimen/font_size_tiny"
-        android:textColor="@color/dark_gray"
-        tools:text="Popularity" />
-
-    <TextView
-        android:id="@+id/slash"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/poster"
-        app:layout_constraintLeft_toRightOf="@id/voteAverage"
-        android:textSize="@dimen/font_size_tiny"
-        android:text=" / " />
-
-    <TextView
-        android:id="@+id/vote"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/poster"
-        app:layout_constraintLeft_toRightOf="@id/slash"
-        android:textSize="@dimen/font_size_tiny"
-        tools:text="Vote count" />
+        android:layout_marginRight="@dimen/margin_small"
+        android:maxLines="4"
+        android:ellipsize="end"
+        tools:text="This is a very long text description\ncould be several line\and could be longer than anything\nnext paragraph\nnext" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/poster"
@@ -79,7 +52,7 @@
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
-        android:id="@+id/release"
+        android:id="@+id/popularity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/poster"
