@@ -3,15 +3,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background"
+    android:paddingLeft="@dimen/margin_small"
+    android:paddingRight="@dimen/margin_small"
+    android:paddingTop="@dimen/margin_small"
+    android:paddingBottom="@dimen/margin_tiny">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/margin_small"
+        android:layout_marginStart="@dimen/margin_small"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@id/poster"
         tools:text="Title of the movie" />
+
+    <TextView
+        android:id="@+id/voteAverage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/margin_small"
+        android:textColor="@color/primaryColor"
+        android:textSize="35sp"
+        app:layout_constraintLeft_toLeftOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        tools:text="7.9" />
+
+    <TextView
+        android:id="@+id/popularity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/margin_small"
+        app:layout_constraintTop_toBottomOf="@id/voteAverage"
+        app:layout_constraintLeft_toLeftOf="@id/title"
+        tools:text="Popularity" />
+
+    <TextView
+        android:id="@+id/slash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/margin_small"
+        app:layout_constraintTop_toTopOf="@id/popularity"
+        app:layout_constraintLeft_toRightOf="@id/popularity"
+        android:text=" / " />
+
+    <TextView
+        android:id="@+id/vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/slash"
+        app:layout_constraintLeft_toRightOf="@id/slash"
+        tools:text="Vote count" />
+
+    <TextView
+        android:id="@+id/release"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/vote"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="Release date" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/poster"

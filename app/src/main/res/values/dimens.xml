@@ -2,4 +2,7 @@
 <resources>
     <dimen name="list_width">150dp</dimen>
     <dimen name="list_height">100dp</dimen>
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin">16dp</dimen>
 </resources>
