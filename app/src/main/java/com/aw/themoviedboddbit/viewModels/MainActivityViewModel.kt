@@ -30,6 +30,7 @@ class MainActivityViewModel @Inject constructor(
 ) : ViewModel() {
 
    var movieList: MutableLiveData<List<Movie>> = MutableLiveData()
+   var unfilteredMovieList = listOf<Movie>()
 
    init {
       tmdbService.fetchGenres().enqueue(object: Callback<GenresResponse> {
@@ -46,7 +47,10 @@ class MainActivityViewModel @Inject constructor(
 
        tmdbService.fetchDiscoverMovies().enqueue(object: Callback<DiscoverMovieResponse> {
           override fun onResponse(call: Call<DiscoverMovieResponse>, response: Response<DiscoverMovieResponse>) {
-             movieList.postValue(response.body()?.results)
+             response.body()?.results?.also {
+                movieList.postValue(it)
+                unfilteredMovieList = it
+             }
           }
 
           override fun onFailure(call: Call<DiscoverMovieResponse>, t: Throwable) { }
@@ -54,31 +58,32 @@ class MainActivityViewModel @Inject constructor(
    }
 
    fun sortByVoteCount() {
-      movieList.value?.sortedByDescending { movie ->
+      unfilteredMovieList.sortedByDescending { movie ->
          movie.vote_count
-      }?.also {
+      }.also {
          movieList.postValue(it)
       }
    }
 
    fun sortByPopularity() {
-      movieList.value?.sortedByDescending { movie ->
+      unfilteredMovieList.sortedByDescending { movie ->
          movie.popularity
-      }?.also {
+      }.also {
          movieList.postValue(it)
       }
    }
 
    fun sortByReleaseDate() {
-      movieList.value?.sortedByDescending { movie ->
+      unfilteredMovieList.sortedByDescending { movie ->
          movie.release_date
-      }?.also {
+      }.also {
          movieList.postValue(it)
       }
    }
 
    fun filterDate(start: Long, end: Long) {
-      movieList.value?.filter {
+      val cloned = unfilteredMovieList.toList()
+      cloned.filter {
          val format = SimpleDateFormat("yyyy-MM-dd")
          var releaseDate: Date? = null
          try {
@@ -89,7 +94,7 @@ class MainActivityViewModel @Inject constructor(
             false
          }
          releaseDate!!.time >= start && releaseDate.time <= end
-      }?.also {
+      }.also {
          movieList.postValue(it)
       }
    }
