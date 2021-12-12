@@ -1,6 +1,8 @@
 package com.aw.themoviedboddbit
 
+import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +12,7 @@ import com.aw.themoviedboddbit.databinding.ActivityMainBinding
 import com.aw.themoviedboddbit.db.GenreDao
 import com.aw.themoviedboddbit.viewModels.MainActivityViewModel
 import com.aw.themoviedboddbit.views.adapters.DiscoverMovieAdapter
+import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -43,6 +46,20 @@ class MainActivity : AppCompatActivity() {
         }
         binding.menuSortDate.setOnClickListener {
             viewModel.sortByReleaseDate()
+        }
+        binding.filterDate.setOnClickListener {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                Toast.makeText(this, "Sorry, this feature is currently only for Android Oreo and above", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+            MaterialDatePicker.Builder.dateRangePicker()
+                    .setTitleText(getString(R.string.pick_date))
+                    .build().also {
+                    it.addOnPositiveButtonClickListener { pair ->
+                        viewModel.filterDate(pair.first, pair.second)
+                    }
+                    it.show(supportFragmentManager, null)
+                }
         }
     }
 }

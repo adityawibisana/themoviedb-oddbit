@@ -1,5 +1,6 @@
 package com.aw.themoviedboddbit.viewModels
 
+import android.os.Build
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
@@ -15,7 +16,12 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.util.*
 import javax.inject.Inject
+import java.util.Date as Date
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
@@ -71,4 +77,20 @@ class MainActivityViewModel @Inject constructor(
       }
    }
 
+   fun filterDate(start: Long, end: Long) {
+      movieList.value?.filter {
+         val format = SimpleDateFormat("yyyy-MM-dd")
+         var releaseDate: Date? = null
+         try {
+            releaseDate = format.parse(it.release_date)
+         } catch (e: Exception) { }
+
+         if (releaseDate == null) {
+            false
+         }
+         releaseDate!!.time >= start && releaseDate.time <= end
+      }?.also {
+         movieList.postValue(it)
+      }
+   }
 }
