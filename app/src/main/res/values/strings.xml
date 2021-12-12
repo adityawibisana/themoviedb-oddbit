@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TheMovieDbOddbit</string>
+    <string name="sort_popularity">Sort by popularity</string>
+    <string name="sort_date">Sort by release date</string>
+    <string name="sort_vote_count">Sort by vote count</string>
+    <string name="filter_date">Filter release date…</string>
 </resources>
