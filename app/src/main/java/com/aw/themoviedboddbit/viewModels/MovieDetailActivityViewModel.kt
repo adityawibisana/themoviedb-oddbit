@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.aw.themoviedboddbit.Utils
 import com.aw.themoviedboddbit.db.GenreDao
 import com.aw.themoviedboddbit.di.NetworkModule
 import com.aw.themoviedboddbit.models.entity.Genre
@@ -19,7 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieDetailActivityViewModel @Inject constructor(
     val tmdbService: NetworkModule.TheMovieDBAPIService,
-    val genreDao: GenreDao
+    val genreDao: GenreDao,
+    val utils: Utils
 ): ViewModel() {
 
     var genre = MutableLiveData<String>()
@@ -31,15 +33,11 @@ class MovieDetailActivityViewModel @Inject constructor(
                 movie ?: return
 
                 viewModelScope.launch(Dispatchers.IO) {
-                    var genres = ""
-                    movie.genres?.forEachIndexed { i, g ->
-                        if (i == 0) {
-                            genres = g.name
-                        } else {
-                            genres = "${genres}, ${g.name}"
-                        }
-                    }
-                    genre.postValue(genres)
+                    genre.postValue(
+                        utils.listToStringCommas(movie.genres?.map {
+                            it.name
+                        }?.toList())
+                    )
                 }
             }
 
