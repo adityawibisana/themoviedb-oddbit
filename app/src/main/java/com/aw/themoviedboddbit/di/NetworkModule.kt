@@ -1,7 +1,9 @@
 package com.aw.themoviedboddbit.di
 
 import androidx.annotation.NonNull
+import androidx.lifecycle.LiveData
 import com.aw.themoviedboddbit.api.RequestInterceptor
+import com.aw.themoviedboddbit.models.entity.Movie
 import com.aw.themoviedboddbit.models.network.DiscoverMovieResponse
 import com.aw.themoviedboddbit.models.network.GenresResponse
 import dagger.Module
@@ -13,6 +15,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 import javax.inject.Singleton
 
@@ -49,6 +52,9 @@ object NetworkModule {
 
         @GET("3/genre/movie/list")
         fun fetchGenres(@Query("language") language: String = "en-US"): Call<GenresResponse>
+
+        @GET("/3/movie/{movie_id}")
+        fun fetchVideos(@Path("movie_id") id: Int): Call<Movie>
     }
 
 }

@@ -8,4 +8,5 @@
     <string name="feature_not_available">Sorry, this feature is not available on your device</string>
     <string name="release_date">Release date: %1$s</string>
     <string name="language">Language: %1$s</string>
+    <string name="genre">Genre: </string>
 </resources>

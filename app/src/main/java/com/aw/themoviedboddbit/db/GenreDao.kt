@@ -9,4 +9,7 @@ import com.aw.themoviedboddbit.models.entity.Genre
 abstract class GenreDao : BaseDao<Genre> {
     @Query("SELECT `name` FROM Genre WHERE `id` = :id ")
     abstract fun get(id: Int): LiveData<String?>
+
+    @Query("SELECT * FROM Genre WHERE `id` = :id ")
+    abstract fun getAllValue(id: Int): Genre
 }

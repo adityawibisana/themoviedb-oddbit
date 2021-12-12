@@ -1,19 +1,23 @@
 package com.aw.themoviedboddbit
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.aw.themoviedboddbit.api.API
-import com.aw.themoviedboddbit.databinding.ActivityMainBinding
 import com.aw.themoviedboddbit.databinding.ActivityMovieDetailBinding
+import com.aw.themoviedboddbit.viewModels.MovieDetailActivityViewModel
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MovieDetailActivity : AppCompatActivity() {
 
     var movieId: Int = -1
     var movieTitle: String? = ""
     var moviePoster: String? = ""
     var movieDescription: String? = ""
-    var moviePopularity: Double? = .0
+    var moviePopularity: Float? = .0f
     var movieReleaseDate: String? = ""
     var movieBackDrop: String? = ""
     var movieLanguage: String? = ""
@@ -21,6 +25,7 @@ class MovieDetailActivity : AppCompatActivity() {
     var movieVoteCount: Int? = 0
 
     private lateinit var binding: ActivityMovieDetailBinding
+    private lateinit var viewModel: MovieDetailActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +37,7 @@ class MovieDetailActivity : AppCompatActivity() {
         movieTitle = intent.getStringExtra(EXTRA_TITLE)
         moviePoster = intent.getStringExtra(EXTRA_POSTER)
         movieDescription = intent.getStringExtra(EXTRA_DESCRIPTION)
-        moviePopularity = intent.getDoubleExtra(EXTRA_POPULARITY, .0)
+        moviePopularity = intent.getFloatExtra(EXTRA_POPULARITY, .0f)
         movieReleaseDate = intent.getStringExtra(EXTRA_RELEASE_DATE)
         movieBackDrop = intent.getStringExtra(EXTRA_BACKDROP)
         movieLanguage = intent.getStringExtra(EXTRA_LANGUAGE)
@@ -56,7 +61,12 @@ class MovieDetailActivity : AppCompatActivity() {
 
         binding.voteAverage.text = movieVoteAverage.toString()
 
+        viewModel = ViewModelProvider(this).get(MovieDetailActivityViewModel::class.java)
+        viewModel.initialize(movieId)
 
+        viewModel.genre.observe(this, Observer {
+            binding.genres.text = it
+        })
     }
 
     companion object {

@@ -66,6 +66,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/genres"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/language"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin"
+        tools:text="Genre: Anime"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/popularity"
         app:layout_constraintBottom_toBottomOf="@id/backdrop"
         app:layout_constraintRight_toRightOf="@id/backdrop"
