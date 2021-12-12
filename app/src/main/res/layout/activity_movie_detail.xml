@@ -30,4 +30,70 @@
         android:textSize="@dimen/font_size_title"
         tools:text="Title of the movie" />
 
+    <TextView
+        android:id="@+id/overview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin"
+        tools:text="Description" />
+
+    <TextView
+        android:id="@+id/releaseDateConstant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/overview"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin"
+        android:text="@string/release_date" />
+
+    <TextView
+        android:id="@+id/releaseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/releaseDateConstant"
+        app:layout_constraintLeft_toRightOf="@id/releaseDateConstant"
+        tools:text="21 November" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/language"
+        app:layout_constraintTop_toBottomOf="@id/releaseDate"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin"
+        tools:text="En"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/popularity"
+        app:layout_constraintBottom_toBottomOf="@id/backdrop"
+        app:layout_constraintRight_toRightOf="@id/backdrop"
+        app:layout_constraintLeft_toLeftOf="@id/voteAverage"
+        tools:text="P: 9090909"
+        android:background="@color/primaryColor"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:text="7.5"
+        app:layout_constraintBottom_toTopOf="@id/popularity"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingRight="@dimen/margin"
+        android:paddingLeft="@dimen/margin"
+        android:id="@+id/voteAverage"
+        android:textColor="@color/primaryColor"
+        android:background="@color/white" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

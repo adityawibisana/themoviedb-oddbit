@@ -17,7 +17,7 @@ class MovieDetailActivity : AppCompatActivity() {
     var movieReleaseDate: String? = ""
     var movieBackDrop: String? = ""
     var movieLanguage: String? = ""
-    var movieVoteAverage: Double? = .0
+    var movieVoteAverage: Float? = .0f
     var movieVoteCount: Int? = 0
 
     private lateinit var binding: ActivityMovieDetailBinding
@@ -36,7 +36,7 @@ class MovieDetailActivity : AppCompatActivity() {
         movieReleaseDate = intent.getStringExtra(EXTRA_RELEASE_DATE)
         movieBackDrop = intent.getStringExtra(EXTRA_BACKDROP)
         movieLanguage = intent.getStringExtra(EXTRA_LANGUAGE)
-        movieVoteAverage = intent.getDoubleExtra(EXTRA_VOTE_AVERAGE, .0)
+        movieVoteAverage = intent.getFloatExtra(EXTRA_VOTE_AVERAGE, .0f)
         movieVoteCount = intent.getIntExtra(EXTRA_VOTE_COUNT, 0)
 
         Glide
@@ -46,6 +46,17 @@ class MovieDetailActivity : AppCompatActivity() {
             .into(binding.backdrop)
 
         binding.title.text = movieTitle
+        binding.overview.text = movieDescription
+        binding.releaseDate.text = movieReleaseDate
+        binding.language.text = resources.getString(R.string.language, movieLanguage)
+
+        moviePopularity?.also {
+            binding.popularity.text = "P:${it} / C:${movieVoteCount}"
+        }
+
+        binding.voteAverage.text = movieVoteAverage.toString()
+
+
     }
 
     companion object {
