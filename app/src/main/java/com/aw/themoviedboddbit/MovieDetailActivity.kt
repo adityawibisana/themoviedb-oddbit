@@ -2,6 +2,10 @@ package com.aw.themoviedboddbit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.aw.themoviedboddbit.api.API
+import com.aw.themoviedboddbit.databinding.ActivityMainBinding
+import com.aw.themoviedboddbit.databinding.ActivityMovieDetailBinding
+import com.bumptech.glide.Glide
 
 class MovieDetailActivity : AppCompatActivity() {
 
@@ -16,9 +20,13 @@ class MovieDetailActivity : AppCompatActivity() {
     var movieVoteAverage: Double? = .0
     var movieVoteCount: Int? = 0
 
+    private lateinit var binding: ActivityMovieDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movie_detail)
+
+        binding = ActivityMovieDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         movieId = intent.getIntExtra(EXTRA_MOVIE_ID, movieId)
         movieTitle = intent.getStringExtra(EXTRA_TITLE)
@@ -30,6 +38,14 @@ class MovieDetailActivity : AppCompatActivity() {
         movieLanguage = intent.getStringExtra(EXTRA_LANGUAGE)
         movieVoteAverage = intent.getDoubleExtra(EXTRA_VOTE_AVERAGE, .0)
         movieVoteCount = intent.getIntExtra(EXTRA_VOTE_COUNT, 0)
+
+        Glide
+            .with(this)
+            .load("${API.BASE_BACKDROP_PATH}${movieBackDrop}")
+            .placeholder(R.drawable.ic_baseline_data_usage_24)
+            .into(binding.backdrop)
+
+        binding.title.text = movieTitle
     }
 
     companion object {
