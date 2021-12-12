@@ -78,23 +78,37 @@
         android:background="@color/white" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/language"
         app:layout_constraintTop_toBottomOf="@id/releaseDate"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginStart="@dimen/margin"
         android:layout_marginTop="@dimen/margin_small"
         android:layout_marginEnd="@dimen/margin"
         tools:text="En"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/genres"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/language"
         android:layout_marginStart="@dimen/margin"
+        android:layout_marginEnd="@dimen/margin"
         tools:text="Genre: Anime"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/productionCompanies"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/genres"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginEnd="@dimen/margin"
+        tools:text="Production Companies: Disney and a lot of other companies this is long text"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

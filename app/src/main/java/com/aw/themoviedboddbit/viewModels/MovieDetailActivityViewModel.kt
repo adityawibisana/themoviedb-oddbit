@@ -25,6 +25,7 @@ class MovieDetailActivityViewModel @Inject constructor(
 ): ViewModel() {
 
     var genre = MutableLiveData<String>()
+    var productionCompanies = MutableLiveData<String>()
 
     fun initialize(movieId: Int) {
         tmdbService.fetchVideos(movieId).enqueue(object: Callback<Movie> {
@@ -36,7 +37,13 @@ class MovieDetailActivityViewModel @Inject constructor(
                     genre.postValue(
                         utils.listToStringCommas(movie.genres?.map {
                             it.name
-                        }?.toList())
+                        })
+                    )
+
+                    productionCompanies.postValue(
+                        utils.listToStringCommas(movie.production_companies?.map {
+                            it.name
+                        })
                     )
                 }
             }

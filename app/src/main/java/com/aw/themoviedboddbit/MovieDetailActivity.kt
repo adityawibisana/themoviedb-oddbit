@@ -67,6 +67,10 @@ class MovieDetailActivity : AppCompatActivity() {
         viewModel.genre.observe(this, Observer {
             binding.genres.text = it
         })
+
+        viewModel.productionCompanies.observe(this, {
+            binding.productionCompanies.text = it
+        })
     }
 
     companion object {
