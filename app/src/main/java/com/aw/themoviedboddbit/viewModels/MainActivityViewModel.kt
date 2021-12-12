@@ -63,4 +63,12 @@ class MainActivityViewModel @Inject constructor(
       }
    }
 
+   fun sortByReleaseDate() {
+      movieList.value?.sortedByDescending { movie ->
+         movie.release_date
+      }?.also {
+         movieList.postValue(it)
+      }
+   }
+
 }

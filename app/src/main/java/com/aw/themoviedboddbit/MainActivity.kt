@@ -41,5 +41,8 @@ class MainActivity : AppCompatActivity() {
         binding.menuSortPopularity.setOnClickListener {
             viewModel.sortByPopularity()
         }
+        binding.menuSortDate.setOnClickListener {
+            viewModel.sortByReleaseDate()
+        }
     }
 }
