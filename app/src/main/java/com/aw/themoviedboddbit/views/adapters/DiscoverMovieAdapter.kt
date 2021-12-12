@@ -11,6 +11,7 @@ import com.aw.themoviedboddbit.databinding.DiscoveryMovieItemBinding
 import com.aw.themoviedboddbit.db.GenreDao
 import com.aw.themoviedboddbit.models.entity.Movie
 import com.bumptech.glide.Glide
+import org.greenrobot.eventbus.EventBus
 
 
 class DiscoverMovieAdapter(private val movies: List<Movie>, private val genreDao: GenreDao) :
@@ -45,6 +46,9 @@ class DiscoverMovieAdapter(private val movies: List<Movie>, private val genreDao
             .into(holder.binding.poster)
         }
 
+        holder.binding.root.setOnClickListener {
+            EventBus.getDefault().post(movie)
+        }
     }
 
     override fun getItemCount() = movies.size

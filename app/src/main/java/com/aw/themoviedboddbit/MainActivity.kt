@@ -1,5 +1,6 @@
 package com.aw.themoviedboddbit
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
@@ -10,10 +11,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aw.themoviedboddbit.databinding.ActivityMainBinding
 import com.aw.themoviedboddbit.db.GenreDao
+import com.aw.themoviedboddbit.models.entity.Movie
 import com.aw.themoviedboddbit.viewModels.MainActivityViewModel
 import com.aw.themoviedboddbit.views.adapters.DiscoverMovieAdapter
 import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -65,6 +70,29 @@ class MainActivity : AppCompatActivity() {
                 }
 
             binding.fab.close(true)
+        }
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onDestroy() {
+        EventBus.getDefault().unregister(this)
+        super.onDestroy()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMovieItemClicked(movie: Movie) {
+        Intent(this, MovieDetailActivity::class.java).also {
+            it.putExtra(MovieDetailActivity.EXTRA_MOVIE_ID, movie.id)
+            it.putExtra(MovieDetailActivity.EXTRA_TITLE, movie.title)
+            it.putExtra(MovieDetailActivity.EXTRA_POSTER, movie.poster_path)
+            it.putExtra(MovieDetailActivity.EXTRA_DESCRIPTION, movie.overview)
+            it.putExtra(MovieDetailActivity.EXTRA_POPULARITY, movie.popularity)
+            it.putExtra(MovieDetailActivity.EXTRA_RELEASE_DATE, movie.release_date)
+            it.putExtra(MovieDetailActivity.EXTRA_BACKDROP, movie.backdrop_path)
+            it.putExtra(MovieDetailActivity.EXTRA_LANGUAGE, movie.original_language)
+            it.putExtra(MovieDetailActivity.EXTRA_VOTE_AVERAGE, movie.vote_average)
+            it.putExtra(MovieDetailActivity.EXTRA_VOTE_COUNT, movie.vote_count)
+            startActivity(it)
         }
     }
 }
