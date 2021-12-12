@@ -40,12 +40,15 @@ class MainActivity : AppCompatActivity() {
 
         binding.menuSortVoteCount.setOnClickListener {
             viewModel.sortByVoteCount()
+            binding.fab.close(true)
         }
         binding.menuSortPopularity.setOnClickListener {
             viewModel.sortByPopularity()
+            binding.fab.close(true)
         }
         binding.menuSortDate.setOnClickListener {
             viewModel.sortByReleaseDate()
+            binding.fab.close(true)
         }
         binding.filterDate.setOnClickListener {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
@@ -60,6 +63,8 @@ class MainActivity : AppCompatActivity() {
                     }
                     it.show(supportFragmentManager, null)
                 }
+
+            binding.fab.close(true)
         }
     }
 }
