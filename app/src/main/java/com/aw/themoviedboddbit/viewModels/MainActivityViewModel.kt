@@ -1,6 +1,7 @@
 package com.aw.themoviedboddbit.viewModels
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aw.themoviedboddbit.db.GenreDao
@@ -44,6 +45,14 @@ class MainActivityViewModel @Inject constructor(
 
           override fun onFailure(call: Call<DiscoverMovieResponse>, t: Throwable) { }
        })
+   }
+
+   fun sortByVoteCount() {
+      movieList.value?.sortedByDescending { movie ->
+         movie.vote_count
+      }?.also {
+         movieList.postValue(it)
+      }
    }
 
 }

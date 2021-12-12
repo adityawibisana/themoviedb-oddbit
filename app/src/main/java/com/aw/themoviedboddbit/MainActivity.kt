@@ -34,5 +34,9 @@ class MainActivity : AppCompatActivity() {
             binding.movieList.adapter = adapter
             binding.movieList.layoutManager = LinearLayoutManager(this)
         })
+
+        binding.menuSortVoteCount.setOnClickListener {
+            viewModel.sortByVoteCount()
+        }
     }
 }
