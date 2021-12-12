@@ -55,4 +55,12 @@ class MainActivityViewModel @Inject constructor(
       }
    }
 
+   fun sortByPopularity() {
+      movieList.value?.sortedByDescending { movie ->
+         movie.popularity
+      }?.also {
+         movieList.postValue(it)
+      }
+   }
+
 }

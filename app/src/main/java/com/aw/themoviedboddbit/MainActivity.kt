@@ -38,5 +38,8 @@ class MainActivity : AppCompatActivity() {
         binding.menuSortVoteCount.setOnClickListener {
             viewModel.sortByVoteCount()
         }
+        binding.menuSortPopularity.setOnClickListener {
+            viewModel.sortByPopularity()
+        }
     }
 }
