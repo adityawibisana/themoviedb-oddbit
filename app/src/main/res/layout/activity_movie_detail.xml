@@ -42,7 +42,7 @@
         tools:text="Description" />
 
     <TextView
-        android:id="@+id/releaseDateConstant"
+        android:id="@+id/releaseDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/overview"
@@ -51,14 +51,6 @@
         android:layout_marginTop="@dimen/margin_small"
         android:layout_marginEnd="@dimen/margin"
         android:text="@string/release_date" />
-
-    <TextView
-        android:id="@+id/releaseDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/releaseDateConstant"
-        app:layout_constraintLeft_toRightOf="@id/releaseDateConstant"
-        tools:text="21 November" />
 
     <TextView
         android:layout_width="wrap_content"

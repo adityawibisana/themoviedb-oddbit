@@ -47,7 +47,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
         binding.title.text = movieTitle
         binding.overview.text = movieDescription
-        binding.releaseDate.text = movieReleaseDate
+        binding.releaseDate.text = resources.getString(R.string.release_date, movieReleaseDate)
         binding.language.text = resources.getString(R.string.language, movieLanguage)
 
         moviePopularity?.also {
