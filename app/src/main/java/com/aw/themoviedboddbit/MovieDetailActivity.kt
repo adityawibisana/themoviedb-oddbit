@@ -9,6 +9,8 @@ import com.aw.themoviedboddbit.databinding.ActivityMovieDetailBinding
 import com.aw.themoviedboddbit.viewModels.MovieDetailActivityViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.NumberFormat
+import java.util.*
 
 @AndroidEntryPoint
 class MovieDetailActivity : AppCompatActivity() {
@@ -70,6 +72,12 @@ class MovieDetailActivity : AppCompatActivity() {
 
         viewModel.productionCompanies.observe(this, {
             binding.productionCompanies.text = it
+        })
+
+        viewModel.revenue.observe(this, {
+            val formattedRevenue = NumberFormat.getNumberInstance(Locale.US).format(it)
+
+            binding.revenue.text = resources.getString(R.string.revenue_value, if (formattedRevenue == "0") "-" else formattedRevenue)
         })
     }
 

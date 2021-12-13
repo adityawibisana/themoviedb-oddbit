@@ -111,4 +111,15 @@
         android:layout_marginEnd="@dimen/margin"
         tools:text="Production Companies: Disney and a lot of other companies this is long text"/>
 
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/revenue"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/productionCompanies"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginEnd="@dimen/margin"
+        tools:text="Revenue: 12$"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

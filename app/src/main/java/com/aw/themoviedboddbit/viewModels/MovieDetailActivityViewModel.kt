@@ -15,6 +15,8 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.NumberFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,6 +28,7 @@ class MovieDetailActivityViewModel @Inject constructor(
 
     var genre = MutableLiveData<String>()
     var productionCompanies = MutableLiveData<String>()
+    var revenue = MutableLiveData<Float>()
 
     fun initialize(movieId: Int) {
         tmdbService.fetchVideos(movieId).enqueue(object: Callback<Movie> {
@@ -45,6 +48,8 @@ class MovieDetailActivityViewModel @Inject constructor(
                             it.name
                         })
                     )
+
+                    revenue.postValue(movie.revenue)
                 }
             }
 
