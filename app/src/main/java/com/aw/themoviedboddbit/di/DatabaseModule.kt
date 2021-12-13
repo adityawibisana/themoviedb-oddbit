@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.aw.themoviedboddbit.db.AppDatabase
 import com.aw.themoviedboddbit.db.BaseDao
+import com.aw.themoviedboddbit.db.FavoriteDao
 import com.aw.themoviedboddbit.db.GenreDao
 import dagger.Module
 import dagger.Provides
@@ -28,6 +29,12 @@ object MainThreadDB {
     @Singleton
     fun provideGenreDao(database: AppDatabase): GenreDao {
         return database.genreDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideFavoriteDao(database: AppDatabase): FavoriteDao {
+        return database.favoriteDao()
     }
 
 }

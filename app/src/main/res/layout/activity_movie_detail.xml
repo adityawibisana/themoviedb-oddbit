@@ -17,6 +17,15 @@
         app:layout_constraintRight_toRightOf="parent"
         tools:src="@drawable/ic_launcher_background"
         android:id="@+id/backdrop" />
+    
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        app:layout_constraintTop_toTopOf="@id/backdrop"
+        app:layout_constraintRight_toRightOf="@id/backdrop"
+        android:background="@drawable/ic_baseline_favorite_border_24"
+        android:layout_margin="@dimen/margin"
+        android:id="@+id/favorite" />
 
     <TextView
         android:id="@+id/title"

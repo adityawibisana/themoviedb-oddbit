@@ -3,13 +3,17 @@ package com.aw.themoviedboddbit
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.aw.themoviedboddbit.api.API
 import com.aw.themoviedboddbit.databinding.ActivityMovieDetailBinding
 import com.aw.themoviedboddbit.viewModels.MovieDetailActivityViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.util.*
 
@@ -87,6 +91,20 @@ class MovieDetailActivity : AppCompatActivity() {
 
         viewModel.homepage.observe(this, {
             binding.homepage.text = resources.getString(R.string.homepage_value, it)
+        })
+
+        binding.favorite.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+                viewModel.addOrRemoveFromFavorite(movieId)
+            }
+        }
+
+        viewModel.favorited.observe(this, {
+            if (it) {
+                binding.favorite.background = ResourcesCompat.getDrawable(resources, R.drawable.ic_baseline_favorited_24, null)
+            } else {
+                binding.favorite.background = ResourcesCompat.getDrawable(resources, R.drawable.ic_baseline_favorite_border_24, null)
+            }
         })
 
         supportActionBar?.hide()
