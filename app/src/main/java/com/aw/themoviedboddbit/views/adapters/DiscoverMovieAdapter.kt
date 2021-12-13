@@ -11,6 +11,7 @@ import com.aw.themoviedboddbit.api.API
 import com.aw.themoviedboddbit.databinding.DiscoveryMovieItemBinding
 import com.aw.themoviedboddbit.db.FavoriteDao
 import com.aw.themoviedboddbit.db.GenreDao
+import com.aw.themoviedboddbit.event.FavoriteClickedEvent
 import com.aw.themoviedboddbit.models.entity.Movie
 import com.bumptech.glide.Glide
 import org.greenrobot.eventbus.EventBus
@@ -46,6 +47,10 @@ class DiscoverMovieAdapter(private val movies: List<Movie>, private val genreDao
                 holder.binding.favorite.background = ResourcesCompat.getDrawable(holder.itemView.resources, R.drawable.ic_baseline_favorited_24, null)
             }
         })
+
+        holder.binding.favorite.setOnClickListener {
+            EventBus.getDefault().post(FavoriteClickedEvent(movie))
+        }
 
 
         movie.poster_path?.also {

@@ -12,11 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.aw.themoviedboddbit.databinding.ActivityMainBinding
 import com.aw.themoviedboddbit.db.FavoriteDao
 import com.aw.themoviedboddbit.db.GenreDao
+import com.aw.themoviedboddbit.event.FavoriteClickedEvent
 import com.aw.themoviedboddbit.models.entity.Movie
 import com.aw.themoviedboddbit.viewModels.MainActivityViewModel
 import com.aw.themoviedboddbit.views.adapters.DiscoverMovieAdapter
 import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -95,6 +98,13 @@ class MainActivity : AppCompatActivity() {
             it.putExtra(MovieDetailActivity.EXTRA_VOTE_AVERAGE, movie.vote_average)
             it.putExtra(MovieDetailActivity.EXTRA_VOTE_COUNT, movie.vote_count)
             startActivity(it)
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMovieItemClicked(favoriteClickedEvent: FavoriteClickedEvent) {
+        lifecycleScope.launch (Dispatchers.IO) {
+            viewModel.addOrRemoveFromFavorite(favoriteClickedEvent.movie.id)
         }
     }
 }
