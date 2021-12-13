@@ -23,5 +23,6 @@ data class Movie(
     val genres: List<Genre>?,
     val production_companies: List<ProductionCompany>?,
     val revenue: Float,
-    val runtime: Int // in minute
+    val runtime: Int, // in minute
+    val homepage: String?
 )

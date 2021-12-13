@@ -12,4 +12,5 @@
     <string name="revenue_value">Revenue: $ %1$s</string>
     <string name="duration_value">Duration: %1$s</string>
     <string name="vote_detail_value">Count:%1$s Popularity:%2$s</string>
+    <string name="homepage_value">See more: %1$s</string>
 </resources>

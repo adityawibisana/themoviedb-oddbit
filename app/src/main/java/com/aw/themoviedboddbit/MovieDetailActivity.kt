@@ -83,6 +83,10 @@ class MovieDetailActivity : AppCompatActivity() {
         viewModel.duration.observe(this, {
             binding.duration.text = resources.getString(R.string.duration_value, it)
         })
+
+        viewModel.homepage.observe(this, {
+            binding.homepage.text = resources.getString(R.string.homepage_value, it)
+        })
     }
 
     companion object {

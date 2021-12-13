@@ -132,4 +132,16 @@
         android:layout_marginEnd="@dimen/margin"
         tools:text="Duration: 20 minutes"/>
 
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/homepage"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/duration"
+        android:autoLink="web"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginEnd="@dimen/margin"
+        tools:text="Homepage: www.google.com"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

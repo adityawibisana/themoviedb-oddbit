@@ -30,6 +30,7 @@ class MovieDetailActivityViewModel @Inject constructor(
     var productionCompanies = MutableLiveData<String>()
     var revenue = MutableLiveData<Float>()
     val duration = MutableLiveData<String>()
+    val homepage = MutableLiveData<String>()
 
     fun initialize(movieId: Int) {
         tmdbService.fetchVideos(movieId).enqueue(object: Callback<Movie> {
@@ -52,6 +53,7 @@ class MovieDetailActivityViewModel @Inject constructor(
 
                     revenue.postValue(movie.revenue)
                     duration.postValue(utils.minutesToHourMinute(movie.runtime))
+                    homepage.postValue(if (movie.homepage.isNullOrEmpty()) "-" else movie.homepage)
                 }
             }
 
