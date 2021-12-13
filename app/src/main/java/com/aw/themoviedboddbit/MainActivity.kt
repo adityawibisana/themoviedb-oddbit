@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aw.themoviedboddbit.databinding.ActivityMainBinding
+import com.aw.themoviedboddbit.db.FavoriteDao
 import com.aw.themoviedboddbit.db.GenreDao
 import com.aw.themoviedboddbit.models.entity.Movie
 import com.aw.themoviedboddbit.viewModels.MainActivityViewModel
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     @Inject lateinit var genreDao: GenreDao
+    @Inject lateinit var favoriteDao: FavoriteDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         viewModel.movieList.observe(this, Observer {
             it ?: return@Observer
-            val adapter = DiscoverMovieAdapter(it, genreDao)
+            val adapter = DiscoverMovieAdapter(it, genreDao, favoriteDao)
             binding.movieList.adapter = adapter
             binding.movieList.layoutManager = LinearLayoutManager(this)
         })

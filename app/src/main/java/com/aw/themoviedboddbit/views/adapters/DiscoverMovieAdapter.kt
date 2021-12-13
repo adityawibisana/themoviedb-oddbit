@@ -2,19 +2,21 @@ package com.aw.themoviedboddbit.views.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.aw.themoviedboddbit.R
 import com.aw.themoviedboddbit.api.API
 import com.aw.themoviedboddbit.databinding.DiscoveryMovieItemBinding
+import com.aw.themoviedboddbit.db.FavoriteDao
 import com.aw.themoviedboddbit.db.GenreDao
 import com.aw.themoviedboddbit.models.entity.Movie
 import com.bumptech.glide.Glide
 import org.greenrobot.eventbus.EventBus
 
 
-class DiscoverMovieAdapter(private val movies: List<Movie>, private val genreDao: GenreDao) :
+class DiscoverMovieAdapter(private val movies: List<Movie>, private val genreDao: GenreDao, private val favoriteDao: FavoriteDao) :
     RecyclerView.Adapter<DiscoverMovieAdapter.MovieViewHolder>() {
 
     class MovieViewHolder(val binding: DiscoveryMovieItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -36,6 +38,15 @@ class DiscoverMovieAdapter(private val movies: List<Movie>, private val genreDao
                 holder.binding.genre.text = it
             })
         }
+
+        favoriteDao.getById(movie.id)?.observe(holder.itemView.context as LifecycleOwner, {
+            if (it == null) {
+                holder.binding.favorite.background = ResourcesCompat.getDrawable(holder.itemView.resources, R.drawable.ic_baseline_favorite_border_24, null)
+            } else {
+                holder.binding.favorite.background = ResourcesCompat.getDrawable(holder.itemView.resources, R.drawable.ic_baseline_favorited_24, null)
+            }
+        })
+
 
         movie.poster_path?.also {
             Glide
