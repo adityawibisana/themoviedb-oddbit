@@ -11,7 +11,7 @@ class Utils {
             retVal = "${retVal}, ${list[i]}"
         }
 
-        return retVal
+        return retVal.trim()
     }
 
     fun minutesToHourMinute(minute: Int) : String {

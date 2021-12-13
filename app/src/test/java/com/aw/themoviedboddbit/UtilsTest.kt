@@ -23,4 +23,13 @@ class UtilsTest {
         assertEquals(utils.minutesToHourMinute(62), "1 hour 2 minutes")
         assertEquals(utils.minutesToHourMinute(72), "1 hour 12 minutes")
     }
+
+    @Test
+    fun test_listToStringCommas() {
+        assertEquals(utils.listToStringCommas(null), "-")
+        assertEquals(utils.listToStringCommas(listOf()), "-")
+        assertEquals(utils.listToStringCommas(listOf("1")), "1")
+        assertEquals(utils.listToStringCommas(listOf("1", "2")), "1, 2")
+        assertEquals(utils.listToStringCommas(listOf("1", "2, 3")), "1, 2, 3")
+    }
 }
