@@ -1,6 +1,7 @@
 package com.aw.themoviedboddbit
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -87,6 +88,11 @@ class MovieDetailActivity : AppCompatActivity() {
         viewModel.homepage.observe(this, {
             binding.homepage.text = resources.getString(R.string.homepage_value, it)
         })
+
+        supportActionBar?.hide()
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
     companion object {
