@@ -13,4 +13,26 @@ class Utils {
 
         return retVal
     }
+
+    fun minutesToHourMinute(minute: Int) : String {
+        val hours = minute / 60
+        val remainingMinute = minute - (60 * hours)
+
+        val h = when (hours) {
+            0 -> ""
+            1 -> "1 hour"
+            else -> {
+                "$hours hours"
+            }
+        }
+
+        val m = when (remainingMinute) {
+            0 -> ""
+            1 -> "1 minute"
+            else -> {
+                "$remainingMinute minutes"
+            }
+        }
+        return "$h $m".trim()
+    }
 }
