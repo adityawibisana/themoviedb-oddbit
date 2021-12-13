@@ -8,6 +8,9 @@ Implements: Room, LiveData, Dependecy Injection (Hilt), Retrofit, Lifecycle, Con
 <img src="/screenshots/Screenshot_20211213-120834_TheMovieDbOddbit.jpg?raw=true" width="300">
 </p>
 
+## Short demo:
+Check on [here](https://youtu.be/U-u67ihXefw)
+
 ## Before Started
 On your `local.properties`, add:
 `tmdb_api_key=YOUR API KEY`
