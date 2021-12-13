@@ -122,4 +122,15 @@
         android:layout_marginEnd="@dimen/margin"
         tools:text="Revenue: 12$"/>
 
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/duration"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/revenue"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginEnd="@dimen/margin"
+        tools:text="Duration: 20 minutes"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

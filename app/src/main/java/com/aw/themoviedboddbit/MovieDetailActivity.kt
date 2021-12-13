@@ -79,6 +79,10 @@ class MovieDetailActivity : AppCompatActivity() {
 
             binding.revenue.text = resources.getString(R.string.revenue_value, if (formattedRevenue == "0") "-" else formattedRevenue)
         })
+
+        viewModel.duration.observe(this, {
+            binding.duration.text = resources.getString(R.string.duration_value, it)
+        })
     }
 
     companion object {
