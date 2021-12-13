@@ -58,7 +58,6 @@
         android:id="@+id/popularity"
         app:layout_constraintBottom_toBottomOf="@id/backdrop"
         app:layout_constraintRight_toRightOf="@id/backdrop"
-        app:layout_constraintLeft_toLeftOf="@id/voteAverage"
         tools:text="P: 9090909"
         android:background="@color/primaryColor"
         android:paddingLeft="@dimen/margin"

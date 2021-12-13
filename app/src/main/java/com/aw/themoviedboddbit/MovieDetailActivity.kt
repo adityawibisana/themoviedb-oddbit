@@ -58,7 +58,7 @@ class MovieDetailActivity : AppCompatActivity() {
         binding.language.text = resources.getString(R.string.language, movieLanguage)
 
         moviePopularity?.also {
-            binding.popularity.text = "P:${it} / C:${movieVoteCount}"
+            binding.popularity.text =  resources.getString(R.string.vote_detail_value, movieVoteCount.toString(), it.toString())
         }
 
         binding.voteAverage.text = movieVoteAverage.toString()
