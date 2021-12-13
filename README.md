@@ -3,8 +3,10 @@ Android application, created for the test for [oddbit](https://oddbit.id/).
 Implements: Room, LiveData, Dependecy Injection (Hilt), Retrofit, Lifecycle, ConstraintLayout with MVVM pattern
 
 ## Screenshots:
-![Main](/screenshots/Screenshot_20211213-120802_TheMovieDbOddbit.jpg?raw=true "Main")
-![Detail](/screenshots/Screenshot_20211213-120834_TheMovieDbOddbit.jpg?raw=true "Detail")
+<p float="left">
+<img src="/screenshots/Screenshot_20211213-120802_TheMovieDbOddbit.jpg?raw=true" width="300">
+<img src="/screenshots/Screenshot_20211213-120834_TheMovieDbOddbit.jpg?raw=true" width="300">
+</p>
 
 ## Before Started
 On your `local.properties`, add:
